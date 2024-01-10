@@ -1,0 +1,47 @@
+#root {
+  padding: 2rem;
+  max-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.outer-div{  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-width: 100%;
+}
+
+.upper{
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.lower{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.text-component{
+  background-color: beige;
+  color: midnightblue;
+  
+  border-radius: 8px;
+  padding: 1rem;
+
+  display: flex ;
+  flex-direction: column;
+
+}
+
+.textbox{
+  border: 1px solid midnightblue;
+  border-radius: 8px;
+  padding: 1rem; 
+}
