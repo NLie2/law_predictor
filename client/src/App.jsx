@@ -19,14 +19,15 @@ function App() {
       const { data } = await axios.get('http://127.0.0.1:5000/')
       setMessage(data)
 
-  }
-  getData()
-} , [])
+    }
+    getData()
+  } , [])
+
+  console.log(message)
 
 
   return (
     <div className='outer-div'>
-      {message && <h1> {message} </h1>}
       <div className='upper'>
         <Question />
       </div>
