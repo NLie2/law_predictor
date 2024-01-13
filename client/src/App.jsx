@@ -1,6 +1,8 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { useEffect } from 'react'
+import axios from 'axios'
+
+
 import './style/App.css'
 
 // Components 
@@ -8,11 +10,23 @@ import Question from './Question'
 import ModelAnswer from './ModelAnswer'
 import GoldAnswer from './GoldAnswer'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    async function getData(){
+      const { data } = await axios.get('http://127.0.0.1:5000/')
+      setMessage(data)
+
+  }
+  getData()
+} , [])
+
 
   return (
     <div className='outer-div'>
+      {message && <h1> {message} </h1>}
       <div className='upper'>
         <Question />
       </div>
