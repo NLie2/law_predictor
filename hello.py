@@ -16,7 +16,7 @@ def hello_world():
     model_predictions = json.load(open('model_law_predictions.json'))
     
     example = encode(model_predictions)
-    
+    print(example)
 
     return "Hello!"
 

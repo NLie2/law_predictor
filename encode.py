@@ -37,4 +37,5 @@ def encode( model_predictions ):
       print("baseline: ",example['cosine_documents_baseline'])
       print()
 
-  return embeddings
+  # for each example in embeddings, only return cosine_model_gold, cosine_documents_perfect, cosine_documents_baseline
+      return {key: {k: value for k,value in example.items() if k in ['cosine_model_gold', 'cosine_documents_perfect', 'cosine_documents_baseline']} for key, example in embeddings.items()}
