@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './style/Question.css';
+// import './style/Question.css';
 
 function Question({ text }) {
   return (

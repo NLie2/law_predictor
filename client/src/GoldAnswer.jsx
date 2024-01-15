@@ -1,4 +1,4 @@
-import './style/GoldAnswer.css'
+// import './style/GoldAnswer.css'
 
 import PropTypes from 'prop-types';
 

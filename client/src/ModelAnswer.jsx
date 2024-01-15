@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import './style/ModelAnswer.css'
+// import './style/ModelAnswer.css'
 
 
 function ModelAnswer( {text, score, baseline} ){

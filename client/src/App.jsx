@@ -1,61 +1,35 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
-import axios from 'axios'
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import NavBar from './NavBar'
+import AnalyzeDataset from './AnalzeDataset'
+import TestYourOwn from './TestYourOwn'
+import GetAdvice from './GetAdvice'
 
 
-import './style/App.css'
 
-// Components 
-import Question from './Question'
-import ModelAnswer from './ModelAnswer'
-import GoldAnswer from './GoldAnswer'
+
 
 
 function App() {
-  const [data, setData] = useState("")
-  const [currentExample, setCurrentExample] = useState("example1")
 
-  useEffect(() => {
-    async function getData(){
-      const { data } = await axios.get('http://127.0.0.1:5000/')
-      setData(data)
-
-    }
-    getData()
-  } , [])
-
-  console.log(data)
-
-  const handleClick = () => {
-    setCurrentExample(
-      currentExample === 'example1' ? 'example2' : 
-      currentExample === 'example2' ? 'example3' : 
-      'example1'
-    )
-  }
 
   return (
+    <>
+      <BrowserRouter>
+        <NavBar />
+        <main>
+          <Routes>  */
+          <Route path='/' element= {<AnalyzeDataset />} />
+            <Route path='/analyzedataset/' element= { <AnalyzeDataset /> } />
+            <Route path='/testyourownlawcase/' element= { <TestYourOwn /> } />
+            <Route path='/getlegaladvice/' element= { <GetAdvice /> } />
 
-    <div className='outer-div'>
-      <button onClick={handleClick}> NEXT </button>
-      <div className='upper'>
-        <Question 
-          text = {data && data['model_predictions'][currentExample]['question']} 
-        />
-      </div>
-      <div className='lower'>
-        <GoldAnswer 
-          text = {data && data['model_predictions'][currentExample]['gold_answer']} 
-        />
-        <ModelAnswer 
-          text = {data && data['model_predictions'][currentExample]['model_answer']} 
-          score = {data && data['similarities'][currentExample]['cosine_model_gold']} 
-          baseline = {data && data['similarities'][currentExample]['cosine_documents_baseline']} 
-        /> 
+          </Routes>
+        </main>
+      </BrowserRouter>
 
-      </div>
-
-    </div>
+    </>
   )
 }
 
