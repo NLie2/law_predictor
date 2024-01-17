@@ -18,11 +18,11 @@ def main():
     model_predictions = json.load(open('model_law_predictions.json'))
 
     
-    similarities = assess_similarities(model_predictions)
+    similarity_score = assess_similarities(model_predictions)
 
     return {
         "model_predictions": model_predictions,
-        "similarities": similarities
+        "similarities": similarity_score
     }
 
 
