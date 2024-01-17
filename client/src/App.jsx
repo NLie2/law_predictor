@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import NavBar from './NavBar'
-import AnalyzeDataset from './AnalzeDataset'
+import AnalyseDataset from './AnalyseDataset'
 import TestYourOwn from './TestYourOwn'
 import GetAdvice from './GetAdvice'
 
@@ -20,8 +20,8 @@ function App() {
         <NavBar />
         <main>
           <Routes>  */
-          <Route path='/' element= {<AnalyzeDataset />} />
-            <Route path='/analyzedataset/' element= { <AnalyzeDataset /> } />
+          <Route path='/' element= {<AnalyseDataset />} />
+            <Route path='/analysedataset/' element= { <AnalyseDataset /> } />
             <Route path='/testyourownlawcase/' element= { <TestYourOwn /> } />
             <Route path='/getlegaladvice/' element= { <GetAdvice /> } />
 
