@@ -41,7 +41,8 @@ def query():
     question = ethical_dataset.iloc[11]['Question/Case Description']
 
     ## ! Comment out to prevent unnecessary API calls
-    # model_answer = query_model(question)
+    #model_answer = query_model(question)
+    #print(model_answer)
     
     
     model_answer = "The most appropriate next step in this situation is to (E) contact the ethics committee. Given the patient's unstable condition and the discrepancy between the patient's written advance directive and the power of attorney's wishes, it is important to involve an ethics committee to provide guidance and help resolve the ethical dilemma."

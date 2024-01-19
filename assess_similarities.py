@@ -34,9 +34,9 @@ def assess_similarity( model_answer, gold_answer ):
   cosine_perfect = ""
   cosine_baseline = ""
   
-  cosine_model_gold = float(util.cos_sim(embedding_model_answer, embedding_gold_answer).numpy()[0][0])
-  cosine_perfect = float(util.cos_sim(embedding_model_answer, embedding_model_answer).numpy()[0][0]) 
-  cosine_baseline = float(util.cos_sim(embedding_model_answer, embedding_baseline).numpy()[0][0])
+  cosine_model_gold = round(float(util.cos_sim(embedding_model_answer, embedding_gold_answer).numpy()[0][0]), 3)
+  cosine_perfect = round(float(util.cos_sim(embedding_model_answer, embedding_model_answer).numpy()[0][0]), 3) 
+  cosine_baseline = round(float(util.cos_sim(embedding_model_answer, embedding_baseline).numpy()[0][0]), 3)
 
   return ({'cosine_model_gold': cosine_model_gold, 'cosine_perfect': cosine_perfect, 'cosine_baseline': cosine_baseline})
 
@@ -51,9 +51,9 @@ def assess_similarities( model_predictions ):
 
   for key, example in embeddings.items():
       # print(key)
-      example["cosine_model_gold"] = float(util.cos_sim(example['model_answer'], example['gold_answer']).numpy()[0][0])
-      example["cosine_documents_perfect"] = float(util.cos_sim(example['model_answer'], example['model_answer']).numpy()[0][0])
-      example["cosine_documents_baseline"] = float(util.cos_sim(example['model_answer'], embeddings['example4']['model_answer']).numpy()[0][0])
+      example["cosine_model_gold"] = round(float(util.cos_sim(example['model_answer'], example['gold_answer']).numpy()[0][0]), 3)
+      example["cosine_documents_perfect"] = round(float(util.cos_sim(example['model_answer'], example['model_answer']).numpy()[0][0]), 3)
+      example["cosine_documents_baseline"] = round(float(util.cos_sim(example['model_answer'], embeddings['example4']['model_answer']).numpy()[0][0]), 3)
       
       print("consine: ", example['cosine_model_gold'])
       print("perfect:",example['cosine_documents_perfect'])
