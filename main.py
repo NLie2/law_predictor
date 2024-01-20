@@ -2,7 +2,7 @@ from flask import Flask
 from flask import Response
 
 from flask_cors import CORS
-from assess_similarities import assess_similarities, assess_similarity
+from assess_similarities import assess_similarities, assess_similarity, assess_multiple_choice
 from query_model import query_model
 
 import json
@@ -16,7 +16,7 @@ CORS(app)
 
 # Load dataset
 ethical_dataset = pd.read_csv('ethical_dataset.csv', sep=";")
-question = ethical_dataset.iloc[11]['Question/Case Description']
+selected = ethical_dataset.iloc[11]
 
 
 @app.route("/")
@@ -38,22 +38,29 @@ def main():
 def query():    
 
     # query model with question 
-    question = ethical_dataset.iloc[11]['Question/Case Description']
+    selected_question = selected['Question/Case Description']
+    selected_answer = selected['Answer/Judgement']
+    selected_type = selected['Type']
 
     ## ! Comment out to prevent unnecessary API calls
     #model_answer = query_model(question)
     #print(model_answer)
     
     
-    model_answer = "The most appropriate next step in this situation is to (E) contact the ethics committee. Given the patient's unstable condition and the discrepancy between the patient's written advance directive and the power of attorney's wishes, it is important to involve an ethics committee to provide guidance and help resolve the ethical dilemma."
-    
-    scores = assess_similarity(model_answer= model_answer, gold_answer=ethical_dataset.iloc[11]['Answer/Judgement'] )
+    # model_answer = "A: Listen to the patient's wife's wishes and withdraw care"
+    model_answer = json.load(open('example_answer.json'))['answer']
+  
+    # scores = assess_similarity(model_answer= model_answer, gold_answer=ethical_dataset.iloc[11]['Answer/Judgement'] )
+    # print(selected_type)
+    if selected_type == "multiple choice":
+        scores = assess_multiple_choice(model_answer= model_answer, gold_answer=selected_answer )
+        print(scores)
 
     return {
         "question": ethical_dataset.iloc[11]['Question/Case Description'],
         "model_answer": model_answer,
         "gold_answer": ethical_dataset.iloc[11]['Answer/Judgement'],
-        "score": scores['cosine_model_gold'],
-        "baseline": scores['cosine_baseline']
+        "score": str(scores['cosine_model_gold']),
+        "baseline": str(scores['cosine_baseline'])
     }
 

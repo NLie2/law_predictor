@@ -24,6 +24,13 @@ baseline_string = "The regulation states that a patient's consent to medical tre
 
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
+def assess_multiple_choice( model_answer, gold_answer ):
+  
+    model_answer = ''.join([char for char in model_answer.lower() if char.isalnum()])
+    gold_answer = ''.join([char for char in gold_answer.lower() if char.isalnum()])
+
+    return ({'cosine_model_gold': model_answer == gold_answer, 'cosine_perfect': model_answer == model_answer, 'cosine_baseline': model_answer == baseline_string})
+
 def assess_similarity( model_answer, gold_answer ):
   embedding_model_answer = model.encode(model_answer, convert_to_tensor=True)
   embedding_gold_answer = model.encode(gold_answer, convert_to_tensor=True)
