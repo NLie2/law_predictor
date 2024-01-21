@@ -3,6 +3,7 @@ from flask import Response
 
 from flask_cors import CORS
 from assess_similarities import assess_similarities, assess_similarity, assess_multiple_choice
+from visualize_most_similar_sentences import visualize_most_similar_sentences
 from query_model import query_model
 
 import json
@@ -47,14 +48,18 @@ def query():
     #print(model_answer)
     
     
-    # model_answer = "A: Listen to the patient's wife's wishes and withdraw care"
-    model_answer = json.load(open('example_answer.json'))['answer']
+    model_answer = "A: Listen to the patient's wife's wishes and withdraw care"
+    # model_answer = json.load(open('example_answer.json'))['answer']
   
-    # scores = assess_similarity(model_answer= model_answer, gold_answer=ethical_dataset.iloc[11]['Answer/Judgement'] )
     # print(selected_type)
     if selected_type == "multiple choice":
         scores = assess_multiple_choice(model_answer= model_answer, gold_answer=selected_answer )
         print(scores)
+
+    # ! Its possible you get an error here because visualize similar sentences only works right now if one answer has len = 1 
+    else:
+        scores = assess_similarity(model_answer= model_answer, gold_answer=ethical_dataset.iloc[11]['Answer/Judgement'] )
+        most_similar_sentences = visualize_most_similar_sentences(model_answer= model_answer, gold_answer=selected_answer)
 
     return {
         "question": ethical_dataset.iloc[11]['Question/Case Description'],
