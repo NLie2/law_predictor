@@ -30,8 +30,8 @@ def visualize_most_similar_sentences(model_answer, gold_answer):
   cleaned_goldanswer = [sentence.replace('\n', '') for sentence in remove_spaces] 
 
 
-  print("Cleaned model output: ", cleaned_modeloutput)
-  print("Cleaned gold answer: ", cleaned_goldanswer)  
+  # print("Cleaned model output: ", cleaned_modeloutput)
+  # print("Cleaned gold answer: ", cleaned_goldanswer)  
 
   embeddings1 = model.encode(cleaned_modeloutput, convert_to_tensor=True)
   embeddings2 = model.encode(cleaned_goldanswer, convert_to_tensor=True)
@@ -44,8 +44,8 @@ def visualize_most_similar_sentences(model_answer, gold_answer):
         #calculate cosine and convert to float with .item()
         cosine_scores[j][i] = util.cos_sim(embeddings2[i], embeddings1[j]).item()
 
-      #   print("{} \t\t {} \t\t Score: {:.4f}".format(cleaned_modeloutput[j], cleaned_goldanswer[i], cosine_scores[j][i]))
-      # print("")
+        print("{} \t\t {} \t\t Score: {:.4f}".format(cleaned_modeloutput[j], cleaned_goldanswer[i], cosine_scores[j][i]))
+      print("")
 
 
   #Find the pairs with the highest cosine similarity scores
@@ -62,7 +62,8 @@ def visualize_most_similar_sentences(model_answer, gold_answer):
   for pair in pairs[0:10]:
       i, j = pair['index']
       result.append("{} \t\t {} \t\t Score: {:.4f}".format(cleaned_modeloutput[i], cleaned_goldanswer[j], pair['score']))
-      
+
+  ## Should return a string, in which the n most similar sentences are highlighted with <b> tags 
   return result
 
 

@@ -10,6 +10,10 @@ import json
 
 import pandas as pd
 
+# import example answer for testing 
+# * From row 6 in the dataset
+from example_answer import answer
+
 
 app = Flask(__name__)
 CORS(app)
@@ -17,7 +21,7 @@ CORS(app)
 
 # Load dataset
 ethical_dataset = pd.read_csv('ethical_dataset.csv', sep=";")
-selected = ethical_dataset.iloc[11]
+selected = ethical_dataset.iloc[6]
 
 
 @app.route("/")
@@ -48,23 +52,23 @@ def query():
     #print(model_answer)
     
     
-    model_answer = "A: Listen to the patient's wife's wishes and withdraw care"
-    # model_answer = json.load(open('example_answer.json'))['answer']
+    # model_answer = "A: Listen to the patient's wife's wishes and withdraw care"
+    model_answer = answer
   
     # print(selected_type)
     if selected_type == "multiple choice":
         scores = assess_multiple_choice(model_answer= model_answer, gold_answer=selected_answer )
         print(scores)
 
-    # ! Its possible you get an error here because visualize similar sentences only works right now if one answer has len = 1 
+    # ! Its possible you get an error here because visualize similar sentences only works right now if one answer has len = 1  
     else:
-        scores = assess_similarity(model_answer= model_answer, gold_answer=ethical_dataset.iloc[11]['Answer/Judgement'] )
+        scores = assess_similarity(model_answer= model_answer, gold_answer=selected_answer )
         most_similar_sentences = visualize_most_similar_sentences(model_answer= model_answer, gold_answer=selected_answer)
 
     return {
-        "question": ethical_dataset.iloc[11]['Question/Case Description'],
+        "question": selected_question,
         "model_answer": model_answer,
-        "gold_answer": ethical_dataset.iloc[11]['Answer/Judgement'],
+        "gold_answer": selected_answer,
         "score": str(scores['cosine_model_gold']),
         "baseline": str(scores['cosine_baseline'])
     }
