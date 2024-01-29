@@ -73,8 +73,8 @@ button:focus-visible {
   }
 }
 
-
-// @import '~bootstrap/scss/bootstrap';
+//@import '~bootstrap/scss/bootstrap';
+@import 'components/DropDown.scss';
 @import 'components/App.scss';
 @import 'components/Nav.scss';
 @import 'components/GoldAnswer.scss';

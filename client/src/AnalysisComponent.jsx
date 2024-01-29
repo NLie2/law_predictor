@@ -5,6 +5,7 @@ import ModelAnswer from './ModelAnswer'
 import GoldAnswer from './GenericAnswer'
 
 
+
 import PropTypes from 'prop-types';
 
 function AnalysisComponent( {question, gold_answer, model_answer, score, baseline}){
