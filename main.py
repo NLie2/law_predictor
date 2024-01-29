@@ -38,6 +38,13 @@ def main():
         "similarities": similarity_score
     }
 
+@app.route("/get_dataset")
+def get_dataset():    
+    # convert ethical_dataset to json format
+    ethical_dataset_json = ethical_dataset.to_json(orient='records')
+    
+    return ethical_dataset_json
+
 
 @app.route("/query")
 def query():    

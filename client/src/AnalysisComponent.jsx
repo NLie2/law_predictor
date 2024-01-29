@@ -2,7 +2,7 @@
 // Components 
 import Question from './Question'
 import ModelAnswer from './ModelAnswer'
-import GoldAnswer from './GoldAnswer'
+import GoldAnswer from './GenericAnswer'
 
 
 import PropTypes from 'prop-types';
@@ -17,6 +17,7 @@ function AnalysisComponent( {question, gold_answer, model_answer, score, baselin
       </div>
       <div className='lower'>
         <GoldAnswer 
+          type = 'Gold Answer'
           text = {gold_answer && gold_answer} 
         />
         <ModelAnswer 
