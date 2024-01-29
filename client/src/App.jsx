@@ -5,6 +5,7 @@ import NavBar from './NavBar'
 import AnalyseDataset from './AnalyseDataset'
 import TestYourOwn from './TestYourOwn'
 import GetAdvice from './GetAdvice'
+import ViewBinaryClass from './ViewBinaryClass'
 
 
 
@@ -22,6 +23,7 @@ function App() {
           <Routes>  */
           <Route path='/' element= {<AnalyseDataset />} />
             <Route path='/analysedataset/' element= { <AnalyseDataset /> } />
+            <Route path='/viewbinaryclassification/' element= { <ViewBinaryClass /> } />
             <Route path='/testyourownlawcase/' element= { <TestYourOwn /> } />
             <Route path='/getlegaladvice/' element= { <GetAdvice /> } />
 

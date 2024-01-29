@@ -13,6 +13,7 @@ function NavBar(  ) {
       <Container className='navbar'>
         <Nav className="me-auto">
           <Link to="/analysedataset/">Analyze Dataset</Link>
+          <Link to="/viewbinaryclassification/">View binary classification</Link>
           <Link to="/testyourownlawcase/">Test on your own lawcase</Link>
           <Link to="/getlegaladvice/">Get legal advice</Link>
         </Nav>
